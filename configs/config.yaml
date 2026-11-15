@@ -1,0 +1,99 @@
+# Configuration for Quantum Medical Image Classification
+# Dataset: PneumoniaMNIST (MedMNIST)
+
+project:
+  name: "quantum-medical-image-classification"
+  seed: 42
+  device: "cpu" # Default for PennyLane default.qubit CPU simulator
+
+dataset:
+  name: "pneumoniamnist"
+  root: "data"
+  in_channels: 1
+  image_size: 28
+  num_classes: 1 # Binary classification logit
+  download: true
+  # Optional subsampling (null means use full official dataset)
+  subsample_train_size: null
+
+preprocessing:
+  normalize:
+    mean: [0.5]
+    std: [0.5]
+  # Train augmentation: mild transformations only
+  augmentation:
+    enabled: true
+    rotation_degrees: 5.0
+    translation: [0.05, 0.05]
+    brightness: 0.1
+    contrast: 0.1
+
+models:
+  classical_cnn:
+    name: "ClassicalCNN"
+    conv1_out: 16
+    conv2_out: 32
+    fc_hidden: 64
+    dropout: 0.3
+  classical_hybrid:
+    name: "ClassicalHybrid"
+    conv1_out: 16
+    conv2_out: 32
+    projection_dim: 4
+    mlp_hidden: 8
+    dropout: 0.2
+  quantum_hybrid:
+    name: "QuantumHybrid"
+    conv1_out: 16
+    conv2_out: 32
+    n_qubits: 4
+    n_layers: 2
+    rotation_encoding: "Y"
+    diff_method: "backprop"
+
+ablation:
+  quantum_hybrid_1layer:
+    name: "QuantumHybrid_1Layer"
+    conv1_out: 16
+    conv2_out: 32
+    n_qubits: 4
+    n_layers: 1
+    rotation_encoding: "Y"
+    diff_method: "backprop"
+
+training:
+  batch_size: 64
+  epochs: 25
+  optimizer:
+    name: "Adam"
+    lr: 0.001
+    weight_decay: 0.0001
+  scheduler:
+    name: "ReduceLROnPlateau"
+    mode: "min"
+    factor: 0.5
+    patience: 2
+    min_lr: 0.00001
+  early_stopping:
+    patience: 5
+    min_delta: 0.001
+  loss:
+    name: "BCEWithLogitsLoss"
+    use_pos_weight: true
+  num_workers: 0
+
+evaluation:
+  classification_threshold: 0.5
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "specificity"
+    - "f1"
+    - "roc_auc"
+
+paths:
+  checkpoints_dir: "outputs/checkpoints"
+  metrics_dir: "outputs/metrics"
+  figures_dir: "outputs/figures"
+  predictions_dir: "outputs/predictions"

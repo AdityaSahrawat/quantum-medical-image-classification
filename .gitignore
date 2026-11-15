@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# MedMNIST raw / downloaded archives (do not commit large datasets)
+data/*.npz
+data/*.csv
+
+# Model Checkpoints (do not commit large binary checkpoints)
+outputs/checkpoints/*.pt
+outputs/checkpoints/*.pth
+
+# Logs & Temporary outputs
+runs/
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+
+# Tensorboard
+events.out.tfevents.*
