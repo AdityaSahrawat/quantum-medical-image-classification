@@ -5,7 +5,9 @@ A high-impact, professional 16:9 academic presentation covering:
 - Project A: Choroid OCT Segmentation and Thickness Measurement
 - Project B: Hybrid Quantum-Classical Medical Image Classification
 15 Main Slides + 4 Backup Slides (19 Slides Total)
-Complete with high-resolution visual figures, data tables, and embedded speaker notes.
+
+Cleaned of raw LaTeX strings ($Rx, \chi^2, etc.) for crystal-clear readability.
+Spacious, beautifully bounded diagrams on Slides 3, 10, 11, 12, and 15.
 """
 
 import os
@@ -105,7 +107,6 @@ def main():
     s1 = prs.slides.add_slide(blank_layout)
     set_slide_background(s1)
 
-    # Title box
     tbox = s1.shapes.add_textbox(Inches(0.8), Inches(0.5), Inches(11.733), Inches(2.2))
     tf1 = tbox.text_frame
     tf1.word_wrap = True
@@ -139,7 +140,6 @@ def main():
     p_author.font.color.rgb = COLOR_TEAL
     p_author.alignment = PP_ALIGN.CENTER
 
-    # Split visual
     split_img_path = os.path.join(assets_dir, "title_split.png")
     if os.path.exists(split_img_path):
         s1.shapes.add_picture(split_img_path, Inches(1.8), Inches(2.9), width=Inches(9.733))
@@ -161,7 +161,6 @@ def main():
                "Two Distinct Problems, One Uncompromising Standard of Rigor",
                "How honest experimental design binds specialized clinical pipelines")
 
-    # Column Left: Project A Card
     add_card(s2, Inches(0.8), Inches(1.8), Inches(5.7), Inches(3.6), border_color=COLOR_GREEN)
     tb_a = s2.shapes.add_textbox(Inches(1.0), Inches(1.95), Inches(5.3), Inches(3.3))
     tf_a = tb_a.text_frame
@@ -185,7 +184,6 @@ def main():
         p.font.color.rgb = COLOR_WHITE
         p.space_after = Pt(4)
 
-    # Column Right: Project B Card
     add_card(s2, Inches(6.8), Inches(1.8), Inches(5.7), Inches(3.6), border_color=COLOR_PURPLE)
     tb_b = s2.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(3.3))
     tf_b = tb_b.text_frame
@@ -209,7 +207,6 @@ def main():
         p.font.color.rgb = COLOR_WHITE
         p.space_after = Pt(4)
 
-    # Bottom Unifying Card
     add_card(s2, Inches(0.8), Inches(5.6), Inches(11.7), Inches(1.4), border_color=COLOR_AMBER)
     tb_u = s2.shapes.add_textbox(Inches(1.0), Inches(5.7), Inches(11.3), Inches(1.2))
     tf_u = tb_u.text_frame
@@ -246,12 +243,11 @@ def main():
                "Vascular anatomy, manual measurement bottlenecks, and data ground truth verification",
                category_color=COLOR_GREEN)
 
-    # Left: Diagram
+    # Left: Regenerated diagram with text fully inside strips
     diag_path = os.path.join(assets_dir, "choroid_anatomy_diagram.png")
     if os.path.exists(diag_path):
         s3.shapes.add_picture(diag_path, Inches(0.8), Inches(1.8), width=Inches(5.8))
 
-    # Right: Content Card
     add_card(s3, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_CYAN)
     tb = s3.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf = tb.text_frame
@@ -265,7 +261,7 @@ def main():
 
     bullets = [
         ("Ocular Biomarker:", "The choroid is the vascular layer feeding the outer retina and avascular fovea. Thinning indicates pathological myopia and dry AMD; thickening indicates pachychoroid disease (CSCR, PCV)."),
-        ("Manual Bottleneck:", "Manual tracing across 3D volumes requires 30–60 minutes per eye. Expert graders disagree by 15–30 µm, especially at the faint, low-contrast Choroidal-Scleral Interface (CSI)."),
+        ("Manual Bottleneck:", "Manual tracing across 3D volumes requires 30–60 min per eye. Expert graders disagree by 15–30 µm, especially at the faint, low-contrast Choroidal-Scleral Interface (CSI)."),
         ("Clinical End Goal:", "Automated, sub-pixel Subfoveal Choroidal Thickness (SFCT) profiling across full Spectralis B-scans.")
     ]
     for lbl, val in bullets:
@@ -275,7 +271,6 @@ def main():
         p.font.color.rgb = COLOR_WHITE
         p.space_after = Pt(4)
 
-    # Alert sub-card inside right column
     p = tf.add_paragraph()
     p.text = "🚨 Critical Dataset Audit Discovery (OIMHS):"
     p.font.size = Pt(12)
@@ -309,7 +304,6 @@ def main():
                "Guaranteed patient isolation across 3,859 Spectralis B-scans",
                category_color=COLOR_GREEN)
 
-    # Left: Pipeline Diagram + Warning Card
     pipe_path = os.path.join(assets_dir, "choroid_pipeline_diagram.png")
     if os.path.exists(pipe_path):
         s4.shapes.add_picture(pipe_path, Inches(0.8), Inches(1.8), width=Inches(6.8))
@@ -334,7 +328,6 @@ def main():
     p.font.size = Pt(10)
     p.font.color.rgb = COLOR_WHITE
 
-    # Right: Data Table Card
     add_card(s4, Inches(7.8), Inches(1.8), Inches(4.7), Inches(5.2), border_color=COLOR_CYAN)
     tb_t = s4.shapes.add_textbox(Inches(8.0), Inches(1.95), Inches(4.3), Inches(4.9))
     tf_t = tb_t.text_frame
@@ -345,7 +338,6 @@ def main():
     p.font.bold = True
     p.font.color.rgb = COLOR_CYAN
 
-    # Table for Partitions
     table_shape = s4.shapes.add_table(4, 4, Inches(8.0), Inches(2.5), Inches(4.3), Inches(1.8))
     table = table_shape.table
     table.columns[0].width = Inches(1.2)
@@ -373,7 +365,6 @@ def main():
             cell.text_frame.paragraphs[0].font.size = Pt(10.5)
             cell.text_frame.paragraphs[0].font.color.rgb = COLOR_WHITE
 
-    # Sub-bullets under table
     tb_sub = s4.shapes.add_textbox(Inches(8.0), Inches(4.6), Inches(4.3), Inches(2.2))
     tf_sub = tb_sub.text_frame
     tf_sub.word_wrap = True
@@ -403,7 +394,6 @@ def main():
                "U-Net++ with scSE attention and exponential boundary distance penalty",
                category_color=COLOR_GREEN)
 
-    # Left: Architecture Card
     add_card(s5, Inches(0.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_CYAN)
     tb_arch = s5.shapes.add_textbox(Inches(1.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_arch = tb_arch.text_frame
@@ -416,9 +406,9 @@ def main():
     p.font.color.rgb = COLOR_CYAN
 
     arch_bullets = [
-        ("Baseline Network:", "Standard U-Net with ResNet34 encoder (24.43M params). Direct skip connections span wide semantic gaps between high-level and low-level maps."),
+        ("Baseline Network:", "Standard U-Net with ResNet34 encoder (24.43M params). Direct skip connections span wide semantic gaps."),
         ("Improved Configuration:", "U-Net++ with ResNet34 backbone + concurrent Spatial and Channel Squeeze-and-Excitation (scSE) blocks (26.28M params, +7.55% capacity)."),
-        ("Dense Nested Skips:", "Bridges encoder-decoder disparity via a dense hierarchy of intermediate convolution nodes, capturing fine boundary textures."),
+        ("Dense Nested Skips:", "Bridges encoder-decoder disparity via a dense hierarchy of intermediate convolution nodes."),
         ("scSE Attention:", "Dual recalibration: channel excitation isolates choroidal tissue signatures; spatial excitation focuses gradients along the CSI boundary.")
     ]
     for lbl, val in arch_bullets:
@@ -437,7 +427,6 @@ def main():
     p.font.color.rgb = COLOR_MUTED
     p.space_before = Pt(6)
 
-    # Right: Loss Function Card
     add_card(s5, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_TEAL)
     tb_loss = s5.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_loss = tb_loss.text_frame
@@ -495,7 +484,6 @@ def main():
                "Comprehensive evaluation across 697 holdout test B-scans (18 patients / 19 eyes)",
                category_color=COLOR_GREEN)
 
-    # Left: Results Table Card
     add_card(s6, Inches(0.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_CYAN)
     tb_res = s6.shapes.add_textbox(Inches(1.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_res = tb_res.text_frame
@@ -506,7 +494,6 @@ def main():
     p.font.bold = True
     p.font.color.rgb = COLOR_CYAN
 
-    # Table
     t_shape = s6.shapes.add_table(6, 4, Inches(1.0), Inches(2.4), Inches(5.3), Inches(2.2))
     tbl = t_shape.table
     tbl.columns[0].width = Inches(1.8)
@@ -555,7 +542,6 @@ def main():
     p.font.size = Pt(9.5)
     p.font.color.rgb = COLOR_MUTED
 
-    # Right: Visual Comparison
     seg_img_path = os.path.join(assets_dir, "39_10_seg.png")
     if os.path.exists(seg_img_path):
         s6.shapes.add_picture(seg_img_path, Inches(6.8), Inches(1.8), width=Inches(5.7))
@@ -577,12 +563,10 @@ def main():
                "Bland-Altman agreement and the peril of conventional morphological hole-filling",
                category_color=COLOR_GREEN)
 
-    # Left: Bland-Altman Plot
     ba_path = os.path.join(assets_dir, "bland_altman_per_scan_means.png")
     if os.path.exists(ba_path):
         s7.shapes.add_picture(ba_path, Inches(0.8), Inches(1.8), width=Inches(5.7))
 
-    # Right: Analysis & Paradox Card
     add_card(s7, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_CYAN)
     tb_ba = s7.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_ba = tb_ba.text_frame
@@ -640,12 +624,10 @@ def main():
                "Vessel shadowing artifacts, ground truth ambiguity, and experimental constraints",
                category_color=COLOR_GREEN)
 
-    # Left: Worst Failure Image
     fail_path = os.path.join(assets_dir, "rank1_worst_CSI_eye_39_scan_8.png")
     if os.path.exists(fail_path):
         s8.shapes.add_picture(fail_path, Inches(0.8), Inches(1.8), width=Inches(5.7))
 
-    # Right: Failure Analysis Card
     add_card(s8, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_ROSE)
     tb_fail = s8.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_fail = tb_fail.text_frame
@@ -659,7 +641,7 @@ def main():
 
     fail_bullets = [
         ("Acoustic Shadowing:", "Superficial retinal blood vessels absorb and scatter OCT light, casting deep vertical shadow bands down through the choroid."),
-        ("Ground Truth Ambiguity (Eye 39, Scan 8):", "In our worst test failure, the human grader abruptly truncated the boundary at 34.6 px due to signal extinction. U-Net++ interpolated a smooth anatomical trajectory at 65.8 px. Much of the 31.2 px 'error' stems from subjective grader truncation under noise.")
+        ("Ground Truth Ambiguity (Eye 39, Scan 8):", "In our worst test failure, the human grader abruptly truncated the boundary at 34.6 px due to signal extinction. U-Net++ interpolated a smooth anatomical trajectory at 65.8 px. Much of the 31.2 px 'error' reflects subjective grader truncation under noise.")
     ]
     for lbl, val in fail_bullets:
         p = tf_fail.add_paragraph()
@@ -706,12 +688,10 @@ def main():
                "Parameter efficiency, expressive capacity, and benchmark design on PneumoniaMNIST",
                category_color=COLOR_PURPLE)
 
-    # Left: Dataset Samples
     samples_path = os.path.join(assets_dir, "dataset_samples.png")
     if os.path.exists(samples_path):
         s9.shapes.add_picture(samples_path, Inches(0.8), Inches(1.8), width=Inches(5.7))
 
-    # Right: Research Motivation Card
     add_card(s9, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_PURPLE)
     tb_m = s9.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_m = tb_m.text_frame
@@ -724,7 +704,7 @@ def main():
     p.font.color.rgb = COLOR_PURPLE
 
     m_bullets = [
-        ("Core Research Question:", "\"Can a compact Variational Quantum Circuit (VQC) serve as an effective, highly parameter-efficient classifier head on classical visual representations?\""),
+        ("Core Research Question:", "\"Can a compact Variational Quantum Circuit (VQC) serve as an effective, highly parameter-efficient classifier head on extracted CNN features?\""),
         ("Demystifying 'Quantum Advantage':", "We do NOT claim quantum supremacy. Instead, we rigorously study Hilbert-space expressiveness and optimization dynamics with just 29 quantum head parameters."),
         ("PneumoniaMNIST Benchmark:", "5,856 pediatric chest X-ray images (28 × 28 grayscale). Official partitions: 4,708 train, 524 val, 624 test.")
     ]
@@ -769,18 +749,19 @@ def main():
                "Classical CNN feature compression, angle embedding, and ring-entangled VQC",
                category_color=COLOR_PURPLE)
 
-    # Left: Quantum Circuit Diagram & Flow
+    # Left top: PennyLane circuit diagram (clean size)
     q_circ_path = os.path.join(assets_dir, "quantum_circuit_diagram.png")
     if os.path.exists(q_circ_path):
-        s10.shapes.add_picture(q_circ_path, Inches(0.8), Inches(1.8), width=Inches(6.8))
+        s10.shapes.add_picture(q_circ_path, Inches(0.8), Inches(1.8), width=Inches(6.6), height=Inches(2.1))
 
+    # Left bottom: Regenerated large, crystal-clear pipeline diagram
     q_pipe_path = os.path.join(assets_dir, "hybrid_qnn_pipeline_diagram.png")
     if os.path.exists(q_pipe_path):
-        s10.shapes.add_picture(q_pipe_path, Inches(0.8), Inches(4.3), width=Inches(6.8))
+        s10.shapes.add_picture(q_pipe_path, Inches(0.8), Inches(4.2), width=Inches(6.6), height=Inches(2.8))
 
-    # Right: Four-Stage Architecture Card
-    add_card(s10, Inches(7.8), Inches(1.8), Inches(4.7), Inches(5.2), border_color=COLOR_PURPLE)
-    tb_q = s10.shapes.add_textbox(Inches(8.0), Inches(1.95), Inches(4.3), Inches(4.9))
+    # Right: Four-Stage Architecture Card with clean, human-readable Unicode formatting
+    add_card(s10, Inches(7.6), Inches(1.8), Inches(4.9), Inches(5.2), border_color=COLOR_PURPLE)
+    tb_q = s10.shapes.add_textbox(Inches(7.8), Inches(1.95), Inches(4.5), Inches(4.9))
     tf_q = tb_q.text_frame
     tf_q.word_wrap = True
 
@@ -791,10 +772,10 @@ def main():
     p.font.color.rgb = COLOR_PURPLE
 
     q_steps = [
-        ("1. Classical CNN Backbone:", "3 Conv blocks (1 → 16 → 32 → 64) + AdaptiveAvgPool → Linear(64, 4) compresses image to vector x ∈ R⁴ (11,076 params)."),
-        ("2. Angle Embedding:", "Maps x to rotation angles via θ_i = π tanh(x_i) ∈ [-π, π]. Applies R_y(θ_i) on state |0000⟩."),
-        ("3. Variational Circuit (2 Layers):", "3 rotations (R_x, R_y, R_z) per qubit (24 weights) + Ring CNOT ladder (0→1→2→3→0) generating state entanglement."),
-        ("4. Measurement & Readout:", "Measures Pauli-Z expectation values ⟨Z_i⟩ ∈ [-1, 1]. Classical Linear(4→1) yields final logit (5 weights).")
+        ("1. Classical CNN Backbone:", "3 Conv blocks (1 → 16 → 32 → 64) + AdaptiveAvgPool → Linear(64, 4) compresses image into 4-dimensional vector x = [x₀, x₁, x₂, x₃] (11,076 parameters)."),
+        ("2. Angle Embedding:", "Maps x to qubit angles via θᵢ = π · tanh(xᵢ) within [-π, +π]. Applies Ry(θᵢ) to initial ground state |0000⟩."),
+        ("3. Variational Circuit (2 Layers):", "3 rotations (Rx, Ry, Rz) per qubit (24 total quantum weights) + Ring CNOT ladder (0 → 1 → 2 → 3 → 0) generating 4-qubit entanglement."),
+        ("4. Measurement & Readout:", "Measures Pauli expectation values ⟨Zᵢ⟩ ∈ [-1, +1] on all 4 qubits. Feedforward Linear(4 → 1) yields logit (5 weights).")
     ]
     for lbl, val in q_steps:
         p = tf_q.add_paragraph()
@@ -804,7 +785,7 @@ def main():
         p.space_after = Pt(3)
 
     p = tf_q.add_paragraph()
-    p.text = "Head Parameter Count:\n24 (Quantum VQC) + 5 (Linear Readout) = 29 Parameters!"
+    p.text = "Total Classification Head Parameters:\n24 (Quantum VQC) + 5 (Linear Readout) = 29 Parameters!"
     p.font.size = Pt(11)
     p.font.bold = True
     p.font.color.rgb = COLOR_TEAL
@@ -828,12 +809,10 @@ def main():
                "Parameter matching and rigorous optimization parity across all architectures",
                category_color=COLOR_PURPLE)
 
-    # Left: Parameter Comparison Graphic
     comp_path = os.path.join(assets_dir, "model_comparison.png")
     if os.path.exists(comp_path):
         s11.shapes.add_picture(comp_path, Inches(0.8), Inches(1.8), width=Inches(5.7))
 
-    # Right: Fair Control Card
     add_card(s11, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_CYAN)
     tb_fc = s11.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_fc = tb_fc.text_frame
@@ -865,7 +844,7 @@ def main():
     p.text = (
         "• Same 4-dim CNN backbone (11,076 params).\n"
         "• Classical MLP Head: Linear(4, 8) + ReLU + Linear(8, 1) = 49 parameters.\n"
-        "• Total Parameters: 11,125 (classical control) vs 11,105 (hybrid QNN) — matched to within 0.18% capacity!"
+        "• Total Parameters: 11,125 (classical control) vs 11,105 (hybrid QNN) — matched to within Δ < 0.2% capacity!"
     )
     p.font.size = Pt(10.5)
     p.font.color.rgb = COLOR_WHITE
@@ -879,10 +858,10 @@ def main():
 
     p = tf_fc.add_paragraph()
     p.text = (
-        "• Identical Adam optimizer (lr = 1e-3, weight_decay = 1e-4).\n"
+        "• Identical Adam optimizer (learning rate = 10⁻³, weight decay = 10⁻⁴).\n"
         "• Identical CosineAnnealingLR (T_max = 20), batch size 64, seed 42, 20 epochs.\n"
         "• Identical pos_weight = 0.3475 in BCEWithLogitsLoss.\n"
-        "• Simulation: PennyLane default.qubit state-vector with exact backpropagation."
+        "• Simulation: PennyLane default.qubit state-vector with exact analytic backprop."
     )
     p.font.size = Pt(9.8)
     p.font.color.rgb = COLOR_MUTED
@@ -903,7 +882,6 @@ def main():
                "Statistical parity: competitive performance without empirical quantum supremacy",
                category_color=COLOR_PURPLE)
 
-    # Left: Results Table Card
     add_card(s12, Inches(0.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_PURPLE)
     tb_qr = s12.shapes.add_textbox(Inches(1.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_qr = tb_qr.text_frame
@@ -915,7 +893,6 @@ def main():
     p.font.bold = True
     p.font.color.rgb = COLOR_PURPLE
 
-    # Table
     t_shape2 = s12.shapes.add_table(5, 5, Inches(1.0), Inches(2.4), Inches(5.3), Inches(2.0))
     tbl2 = t_shape2.table
     tbl2.columns[0].width = Inches(1.7)
@@ -952,7 +929,6 @@ def main():
             else:
                 p.font.color.rgb = COLOR_WHITE
 
-    # McNemar's Test Findings
     tb_mcn = s12.shapes.add_textbox(Inches(1.0), Inches(4.5), Inches(5.3), Inches(2.3))
     tf_mcn = tb_mcn.text_frame
     tf_mcn.word_wrap = True
@@ -965,14 +941,13 @@ def main():
     p = tf_mcn.add_paragraph()
     p.text = (
         "• QNN (2-L) vs Baseline CNN: χ² = 9.72, p = 0.0018 → Statistically Significant gain over unconstrained baseline.\n"
-        "• QNN (2-L) vs Matched MLP Control: χ² = 1.93, p = 0.164 → NOT statistically significant (α = 0.05). "
+        "• QNN (2-L) vs Matched MLP Control: χ² = 1.93, p = 0.164 → NOT statistically significant (significance threshold α = 0.05). "
         "95% Wilson Score CIs overlap ([86.7%, 91.5%] vs [85.1%, 90.2%]).\n"
         "• Honest Conclusion: The 29-param quantum head matches classical efficiency, but provides no empirical quantum advantage."
     )
     p.font.size = Pt(9.5)
     p.font.color.rgb = COLOR_WHITE
 
-    # Right: ROC Curves
     roc_path = os.path.join(assets_dir, "roc_curves_combined.png")
     if os.path.exists(roc_path):
         s12.shapes.add_picture(roc_path, Inches(6.8), Inches(1.8), width=Inches(5.7))
@@ -993,7 +968,6 @@ def main():
                "Prevalence shift, specificity collapse, and model selection integrity",
                category_color=COLOR_PURPLE)
 
-    # Left: Investigation Card
     add_card(s13, Inches(0.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_AMBER)
     tb_inv = s13.shapes.add_textbox(Inches(1.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_inv = tb_inv.text_frame
@@ -1036,7 +1010,6 @@ def main():
         p.font.color.rgb = COLOR_WHITE
         p.space_after = Pt(2)
 
-    # Right: Loss Curves
     loss_path = os.path.join(assets_dir, "loss_curves.png")
     if os.path.exists(loss_path):
         s13.shapes.add_picture(loss_path, Inches(6.8), Inches(1.8), width=Inches(5.7))
@@ -1058,12 +1031,10 @@ def main():
                "State-vector differentiation vs physical NISQ Parameter-Shift execution",
                category_color=COLOR_PURPLE)
 
-    # Left: Confusion Matrices
     cm_q_path = os.path.join(assets_dir, "confusion_matrix_quantum_hybrid.png")
     if os.path.exists(cm_q_path):
         s14.shapes.add_picture(cm_q_path, Inches(0.8), Inches(1.8), width=Inches(5.7))
 
-    # Right: Simulation Reality Card
     add_card(s14, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_CYAN)
     tb_sim = s14.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
     tf_sim = tb_sim.text_frame
@@ -1121,29 +1092,28 @@ def main():
                "Three Core Pillars of Rigorous Medical Image AI",
                "Cross-project conclusions: patient integrity, matched controls, and metric honesty")
 
-    # Left: 3-Pillars Graphic
+    # Left: Regenerated spacious 3-Pillars Diagram with perfectly contained text
     pil_path = os.path.join(assets_dir, "synthesis_3pillars.png")
     if os.path.exists(pil_path):
-        s15.shapes.add_picture(pil_path, Inches(0.8), Inches(1.8), width=Inches(5.7))
+        s15.shapes.add_picture(pil_path, Inches(0.8), Inches(1.8), width=Inches(6.2), height=Inches(5.2))
 
     # Right: Synthesis Card
-    add_card(s15, Inches(6.8), Inches(1.8), Inches(5.7), Inches(5.2), border_color=COLOR_TEAL)
-    tb_syn = s15.shapes.add_textbox(Inches(7.0), Inches(1.95), Inches(5.3), Inches(4.9))
+    add_card(s15, Inches(7.3), Inches(1.8), Inches(5.2), Inches(5.2), border_color=COLOR_TEAL)
+    tb_syn = s15.shapes.add_textbox(Inches(7.5), Inches(1.95), Inches(4.8), Inches(4.9))
     tf_syn = tb_syn.text_frame
     tf_syn.word_wrap = True
 
     p = tf_syn.paragraphs[0]
-    p.text = "Comparative Summary Across Both Projects"
+    p.text = "Comparative Summary Across Projects"
     p.font.size = Pt(15)
     p.font.bold = True
     p.font.color.rgb = COLOR_TEAL
 
-    # Table
-    t_shape3 = s15.shapes.add_table(4, 3, Inches(7.0), Inches(2.4), Inches(5.3), Inches(1.8))
+    t_shape3 = s15.shapes.add_table(4, 3, Inches(7.5), Inches(2.4), Inches(4.8), Inches(1.8))
     tbl3 = t_shape3.table
-    tbl3.columns[0].width = Inches(1.5)
-    tbl3.columns[1].width = Inches(1.9)
-    tbl3.columns[2].width = Inches(1.9)
+    tbl3.columns[0].width = Inches(1.4)
+    tbl3.columns[1].width = Inches(1.7)
+    tbl3.columns[2].width = Inches(1.7)
 
     headers3 = ["Dimension", "Project A (OCT)", "Project B (Quantum)"]
     for i, h in enumerate(headers3):
@@ -1154,9 +1124,9 @@ def main():
         cell.text_frame.paragraphs[0].font.color.rgb = COLOR_CYAN
 
     data3 = [
-        ["Data Safeguard", "Patient-level split (no 30 µm slice leak)", "Benchmark partition (no demographic leak)"],
-        ["Baseline Control", "U-Net ResNet34 (+7.5% params)", "49-param MLP (+0.18% params)"],
-        ["Metric Honesty", "Bland-Altman LoA (no hole filling)", "McNemar's test (p=0.164, no supremacy)"]
+        ["Data Safeguard", "Patient split (no 30 µm slice leak)", "Benchmark partition (no demographic leak)"],
+        ["Baseline Rigor", "U-Net ResNet34 (+7.5% params)", "49-param MLP (+0.18% params)"],
+        ["Metric Honesty", "Bland-Altman LoA (no hole filling)", "McNemar's test (p = 0.164, no supremacy)"]
     ]
     for row_idx, r in enumerate(data3):
         for col_idx, val in enumerate(r):
@@ -1166,8 +1136,7 @@ def main():
             p.font.size = Pt(9)
             p.font.color.rgb = COLOR_WHITE
 
-    # Big Quote Card
-    tb_qte = s15.shapes.add_textbox(Inches(7.0), Inches(4.4), Inches(5.3), Inches(2.3))
+    tb_qte = s15.shapes.add_textbox(Inches(7.5), Inches(4.4), Inches(4.8), Inches(2.3))
     tf_qte = tb_qte.text_frame
     tf_qte.word_wrap = True
     p = tf_qte.paragraphs[0]
@@ -1240,7 +1209,7 @@ def main():
     p.text = (
         "Why did morphological closing + smoothing inflate thickness MAE from 2.095 px to 11.223 px (p < 0.001)?\n\n"
         "• Large choroidal vessels in Haller's layer appear as hyporeflective lumens (dark circular voids).\n"
-        "• Morphological closing (M • K) treats lumens as background holes and bridges them with surrounding stroma.\n"
+        "• Morphological closing treats lumens as background holes and bridges them with surrounding stroma.\n"
         "• This alters the connected component boundary, dragging the detected CSI interface downward into scleral tissue by 8–15 pixels.\n\n"
         "Final Protocol: Largest Connected Component (LCC) + horizontal gap bridging (≤ 15 px) only. Lumens are preserved as genuine anatomy."
     )
@@ -1319,7 +1288,7 @@ def main():
     p.text = (
         "For quantum circuits with generators having eigenvalues ±1/2 (such as Pauli rotations Rx, Ry, Rz), "
         "the exact gradient of an expectation value is:\n\n"
-        "∂⟨Z⟩ / ∂θ_j = 0.5 • [ ⟨Z⟩(θ_j + π/2) - ⟨Z⟩(θ_j - π/2) ]\n\n"
+        "∂⟨Z⟩ / ∂θⱼ = 0.5 • [ ⟨Z⟩(θⱼ + π/2) - ⟨Z⟩(θⱼ - π/2) ]\n\n"
         "• Requires 2 distinct quantum circuit evaluations per parameter per sample.\n"
         "• For P = 24 parameters and batch size B = 64: 2 × 24 × 64 = 3,072 circuit runs per batch!\n"
         "• Over 74 batches/epoch × 20 epochs = 4.54 × 10⁶ circuit runs on physical hardware."
@@ -1340,7 +1309,7 @@ def main():
 
     p = tf_b3r.add_paragraph()
     p.text = (
-        "• State-Vector Simulation: PennyLane's default.qubit computes exact state amplitudes in C¹⁶ via matrix multiplication.\n\n"
+        "• State-Vector Simulation: PennyLane's default.qubit computes exact state amplitudes in ℂ¹⁶ via matrix multiplication.\n\n"
         "• Reverse-Mode Autodiff: Backpropagation through state-vectors computes exact gradients in a single backward pass, "
         "reducing 20-epoch training from ~8 hours to 11.2 minutes on consumer CPU.\n\n"
         "• Scientific Validity: Simulator backprop gives identical parameter updates to noiseless parameter-shift with infinite shots, "
@@ -1375,7 +1344,6 @@ def main():
     p.font.bold = True
     p.font.color.rgb = COLOR_CYAN
 
-    # Contingency Table
     t_shape4 = s19.shapes.add_table(5, 5, Inches(1.0), Inches(2.4), Inches(5.3), Inches(2.2))
     tbl4 = t_shape4.table
     tbl4.columns[0].width = Inches(2.1)
@@ -1384,7 +1352,7 @@ def main():
     tbl4.columns[3].width = Inches(0.8)
     tbl4.columns[4].width = Inches(1.0)
 
-    headers4 = ["Comparison", "n01", "n10", "χ²", "p-value"]
+    headers4 = ["Comparison", "n₀₁", "n₁₀", "χ²", "p-value"]
     for i, h in enumerate(headers4):
         cell = tbl4.cell(0, i)
         cell.text = h
@@ -1415,9 +1383,9 @@ def main():
     tf_nt4.word_wrap = True
     p = tf_nt4.paragraphs[0]
     p.text = (
-        "• n01: Model A incorrect & Model B correct.\n"
-        "• n10: Model A correct & Model B incorrect.\n"
-        "• Continuity-corrected McNemar: χ² = (|n01 - n10| - 1)² / (n01 + n10)."
+        "• n₀₁: Model A incorrect & Model B correct.\n"
+        "• n₁₀: Model A correct & Model B incorrect.\n"
+        "• Continuity-corrected McNemar: χ² = (|n₀₁ - n₁₀| - 1)² / (n₀₁ + n₁₀)."
     )
     p.font.size = Pt(9.5)
     p.font.color.rgb = COLOR_MUTED
@@ -1433,7 +1401,6 @@ def main():
     p.font.bold = True
     p.font.color.rgb = COLOR_PURPLE
 
-    # Wilson Table
     t_shape5 = s19.shapes.add_table(4, 3, Inches(7.0), Inches(2.4), Inches(5.3), Inches(1.8))
     tbl5 = t_shape5.table
     tbl5.columns[0].width = Inches(1.7)
@@ -1483,7 +1450,7 @@ def main():
     os.makedirs("presentation", exist_ok=True)
     out_pptx = "presentation/combined_presentation.pptx"
     prs.save(out_pptx)
-    print(f"Successfully generated {out_pptx} with {len(prs.slides)} slides!")
+    print(f"Successfully generated updated {out_pptx} with {len(prs.slides)} slides!")
 
 
 if __name__ == "__main__":

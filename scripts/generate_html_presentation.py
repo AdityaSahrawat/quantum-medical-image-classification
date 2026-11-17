@@ -5,6 +5,9 @@ A comprehensive, interactive academic presentation covering:
 - Project A: Choroid OCT Segmentation and Thickness Measurement
 - Project B: Hybrid Quantum-Classical Medical Image Classification
 15 Main Slides + 4 Backup Slides (19 Slides Total)
+
+Cleaned of raw LaTeX math strings ($Rx, \chi^2, etc.) for crystal-clear readability.
+Spacious, beautifully bounded diagrams on Slides 3, 10, 11, 12, and 15.
 """
 
 import os
@@ -186,7 +189,7 @@ HTML_CONTENT = """<!DOCTYPE html>
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 36px 44px;
+      padding: 34px 42px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -203,7 +206,7 @@ HTML_CONTENT = """<!DOCTYPE html>
 
     /* Slide Typography */
     .slide-header {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .slide-category {
@@ -216,14 +219,14 @@ HTML_CONTENT = """<!DOCTYPE html>
     }
 
     .slide-title {
-      font-size: 1.85rem;
+      font-size: 1.82rem;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.2;
     }
 
     .slide-subtitle {
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       color: var(--text-muted);
       margin-top: 4px;
     }
@@ -231,7 +234,7 @@ HTML_CONTENT = """<!DOCTYPE html>
     .slide-body {
       flex: 1;
       display: flex;
-      gap: 28px;
+      gap: 26px;
       min-height: 0;
     }
 
@@ -243,6 +246,8 @@ HTML_CONTENT = """<!DOCTYPE html>
     }
 
     .col-60 { flex: 1.35; }
+    .col-55 { flex: 1.22; }
+    .col-45 { flex: 1.0; }
     .col-40 { flex: 0.95; }
     .col-50 { flex: 1; }
 
@@ -329,10 +334,11 @@ HTML_CONTENT = """<!DOCTYPE html>
     }
 
     .figure-caption {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       margin-top: 8px;
       text-align: center;
+      line-height: 1.4;
     }
 
     /* Tables */
@@ -366,7 +372,7 @@ HTML_CONTENT = """<!DOCTYPE html>
       font-weight: 700;
     }
 
-    /* Math formulas */
+    /* Math and Code Blocks */
     .math-block {
       background: #0d1322;
       border-left: 3px solid var(--accent-purple);
@@ -524,15 +530,15 @@ HTML_CONTENT = """<!DOCTYPE html>
 
       <!-- SLIDE 1: Title -->
       <div class="slide active" data-slide="1" data-section="OPENING" data-badge="OPENING">
-        <div class="slide-header" style="text-align: center; margin-bottom: 24px;">
+        <div class="slide-header" style="text-align: center; margin-bottom: 22px;">
           <div class="slide-category">ACADEMIC MASTER'S DEFENSE / SEMESTER PRESENTATION</div>
-          <h1 class="slide-title" style="font-size: 2.2rem; max-width: 1100px; margin: 0 auto;">
+          <h1 class="slide-title" style="font-size: 2.15rem; max-width: 1100px; margin: 0 auto;">
             Two Approaches to Medical Image Analysis: Deep Segmentation for Choroidal Thickness and Hybrid Quantum-Classical Pneumonia Detection
           </h1>
           <p class="slide-subtitle" style="font-size: 1.05rem; margin-top: 8px;">
             A Comparative Study in Model Design, Data Integrity, and Rigorous Evaluation
           </p>
-          <div style="margin-top: 12px; font-size: 0.95rem; color: #cbd5e1;">
+          <div style="margin-top: 10px; font-size: 0.95rem; color: #cbd5e1;">
             <strong>Aditya Sahrawat</strong> &bull; Medical Image Analysis & Deep Learning &bull; Academic Year 2026
           </div>
         </div>
@@ -609,9 +615,9 @@ HTML_CONTENT = """<!DOCTYPE html>
         <div class="slide-body">
           <div class="col-left col-50">
             <div class="figure-container" style="height: 100%;">
-              <img src="assets/choroid_anatomy_diagram.png" alt="Choroid Anatomy Diagram" style="max-height: 280px;">
+              <img src="assets/choroid_anatomy_diagram.png" alt="Choroid Anatomy Diagram" style="max-height: 310px; width: 100%; object-fit: contain;">
               <div class="figure-caption">
-                Figure 3.1: Posterior ocular anatomy in SD-OCT. Bruch's Membrane (BM, inner boundary) and Choroidal-Scleral Interface (CSI, outer boundary).
+                Figure 3.1: Posterior ocular anatomy in SD-OCT. Clearly defined boundary strips: Bruch's Membrane (BM, inner boundary, cyan) and Choroidal-Scleral Interface (CSI, outer boundary, yellow).
               </div>
             </div>
           </div>
@@ -621,14 +627,14 @@ HTML_CONTENT = """<!DOCTYPE html>
                 <div class="card-title" style="color: var(--accent-cyan);">Diagnostic Significance & Limitations</div>
                 <ul class="bullet-list oct" style="margin-top: 8px;">
                   <li><strong>Ocular Biomarker:</strong> The choroid supplies oxygen to the avascular fovea. Thinning occurs in pathological myopia and dry AMD; thickening occurs in pachychoroid spectrum disease (CSCR, PCV).</li>
-                  <li><strong>Manual Bottleneck:</strong> Segmenting 3D volumes requires 30–60 min per eye. Expert graders disagree by 15–30 &mu;m, particularly at the faint CSI transition.</li>
+                  <li><strong>Manual Bottleneck:</strong> Segmenting 3D volumes requires 30–60 min per eye. Expert graders disagree by 15–30 µm, particularly at the faint CSI transition.</li>
                   <li><strong>Clinical Objective:</strong> Automated Subfoveal Choroidal Thickness (SFCT) measurement across full B-scans.</li>
                 </ul>
               </div>
               <div class="card highlight" style="margin-top: 12px; border-color: var(--accent-teal);">
                 <div class="card-title" style="color: var(--accent-teal); font-size: 0.88rem;">🚨 Critical Dataset Audit Discovery (OIMHS)</div>
-                <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.4;">
-                  The OIMHS dataset includes multiple mask channels. Our exploratory audit revealed that the green mask (~37 &mu;m above BM) corresponds to neurosensory retina, whereas the yellow mask (~214 &mu;m below BM) is the true choroidal stroma. Naive training on green masks segments retina, not choroid!
+                <p style="font-size: 0.82rem; color: #cbd5e1; line-height: 1.45;">
+                  The OIMHS dataset includes multiple mask channels. Our exploratory audit revealed that the green mask (~37 µm above BM) corresponds to neurosensory retina, whereas the yellow mask (~214 µm below BM) is the true choroidal stroma. Naive training on green masks segments retina, not choroid!
                 </p>
               </div>
             </div>
@@ -657,7 +663,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card warning" style="margin-top: 10px; padding: 10px 16px;">
               <div class="card-title" style="color: var(--accent-amber); font-size: 0.86rem;">⚠️ The Severe Pitfall of Random B-Scan Splitting</div>
               <p style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
-                Adjacent B-scans within a Heidelberg Spectralis volume are separated by only 30–120 &mu;m. A random scan-level split places nearly identical slices of the same patient into both training and test sets, leaking patient vascular architecture and yielding deceptively inflated metrics.
+                Adjacent B-scans within a Heidelberg Spectralis volume are separated by only 30–120 µm. A random scan-level split places nearly identical slices of the same patient into both training and test sets, leaking patient vascular architecture and yielding deceptively inflated metrics.
               </p>
             </div>
           </div>
@@ -725,7 +731,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-cyan);">Architectural Comparison</div>
               <ul class="bullet-list oct" style="margin-top: 8px;">
-                <li><strong>Baseline Architecture:</strong> Standard U-Net with ResNet34 encoder (24.43M parameters). Direct skip connections span large semantic gaps.</li>
+                <li><strong>Baseline Architecture:</strong> Standard U-Net with ResNet34 encoder (24.43M parameters). Direct skip connections span wide semantic gaps.</li>
                 <li><strong>Improved System Configuration:</strong> U-Net++ with ResNet34 backbone + concurrent Spatial and Channel Squeeze-and-Excitation (scSE) blocks (26.28M parameters, +7.55% capacity).</li>
                 <li><strong>Dense Nested Skips:</strong> Bridges semantic disparity between encoder stages and decoder blocks via intermediate convolution dense nodes.</li>
                 <li><strong>scSE Attention Blocks:</strong> Recalibrates channel feature dependencies ('what' tissue) alongside spatial excitation ('where' boundaries lie).</li>
@@ -742,14 +748,14 @@ HTML_CONTENT = """<!DOCTYPE html>
                 Standard cross-entropy treats all pixels equally, allowing large interior areas to dominate gradients while fuzzy boundaries suffer. We engineered a spatial boundary distance penalty:
               </p>
               <div class="math-block">
-                w(x) = 1 + 5 &bull; exp(-d(x)&sup2; / (2 &bull; &sigma;&sup2;)),   with &sigma; = 5 px
+                w(x) = 1 + 5 &bull; exp( - d(x)&sup2; / (2 &bull; &sigma;&sup2;) ),   with &sigma; = 5 px
               </div>
               <div class="math-block">
                 L_total = L_BCE,weighted + L_Dice
               </div>
               <ul class="bullet-list oct" style="margin-top: 10px;">
-                <li>$d(x)$ is the Euclidean distance from pixel $x$ to the nearest true boundary (BM or CSI).</li>
-                <li>Pixels exactly on the boundary receive a <strong>6&times; loss penalty</strong> ($1 + 5 = 6$).</li>
+                <li>d(x) is the Euclidean distance from pixel x to the nearest true boundary (BM or CSI).</li>
+                <li>Pixels exactly on the boundary receive a <strong>6× loss penalty</strong> (1 + 5 = 6.0).</li>
                 <li>Exponential falloff smoothly relaxes to 1.0 in interior stroma and distant background.</li>
                 <li>Directly penalizes the 1–3 pixel boundary drift that corrupts clinical thickness profiles.</li>
               </ul>
@@ -815,7 +821,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                 </tbody>
               </table>
               <div class="card warning" style="margin-top: 12px; font-size: 0.8rem; padding: 10px;">
-                <strong>Measurement Units:</strong> Pixel metrics are native and primary. Physical estimates: BM MAE &approx; <strong>1.53 &mu;m</strong>, CSI MAE &approx; <strong>5.88 &mu;m</strong> (assuming Heidelberg Spectralis 3.75 &mu;m/px axial scale). Both are well within human grader disagreement (15–30 &mu;m).
+                <strong>Measurement Units:</strong> Pixel metrics are native and primary. Physical estimates: BM MAE &approx; <strong>1.53 µm</strong>, CSI MAE &approx; <strong>5.88 µm</strong> (assuming Heidelberg Spectralis 3.75 µm/px axial scale). Both are well within human grader disagreement (15–30 µm).
               </div>
             </div>
           </div>
@@ -845,7 +851,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="figure-container" style="height: 100%;">
               <img src="assets/bland_altman_per_scan_means.png" alt="Bland-Altman per scan means" style="max-height: 270px;">
               <div class="figure-caption">
-                Figure 7.1: Bland-Altman plot of mean choroidal thickness across 697 test B-scans. Mean bias = +0.28 px (+1.05 &mu;m), 95% LoA = [-5.12, +5.68] px.
+                Figure 7.1: Bland-Altman plot of mean choroidal thickness across 697 test B-scans. Mean bias = +0.28 px (+1.05 µm), 95% LoA = [-5.12, +5.68] px.
               </div>
             </div>
           </div>
@@ -854,16 +860,16 @@ HTML_CONTENT = """<!DOCTYPE html>
               <div>
                 <div class="card-title" style="color: var(--accent-cyan);">Bland-Altman Clinical Concordance</div>
                 <ul class="bullet-list oct" style="margin-top: 6px;">
-                  <li><strong>Zero Systematic Bias:</strong> Mean bias is +0.28 px (+1.05 &mu;m), demonstrating minimal over- or under-segmentation across the entire thickness range.</li>
-                  <li><strong>95% Limits of Agreement:</strong> [-5.12, +5.68] px ([-19.2, +21.3] &mu;m).</li>
-                  <li><strong>Subfoveal Concordance (SFCT):</strong> Mean predicted 216.1 &mu;m vs ground truth 213.6 &mu;m across 19 test eyes. Pearson correlation $r = 0.9886$ ($p < 0.0001$).</li>
+                  <li><strong>Zero Systematic Bias:</strong> Mean bias is +0.28 px (+1.05 µm), demonstrating minimal over- or under-segmentation across the entire thickness range.</li>
+                  <li><strong>95% Limits of Agreement:</strong> [-5.12, +5.68] px ([-19.2, +21.3] µm).</li>
+                  <li><strong>Subfoveal Concordance (SFCT):</strong> Mean predicted 216.1 µm vs ground truth 213.6 µm across 19 test eyes. Pearson correlation r = 0.9886 (p &lt; 0.0001).</li>
                   <li><strong>Proper Statistical Unit:</strong> Evaluated on 697 scan averages, not pooled columns, avoiding pseudoreplication artifact.</li>
                 </ul>
               </div>
               <div class="card warning" style="margin-top: 10px;">
                 <div class="card-title" style="color: var(--accent-amber); font-size: 0.86rem;">⚠️ The Post-Processing Paradox</div>
                 <p style="font-size: 0.8rem; color: #e2e8f0; line-height: 1.35;">
-                  Applying standard morphological hole-filling and smoothing drastically worsened thickness MAE from <strong>2.095 px to 11.223 px ($p < 0.001$)</strong>! Large blood vessel lumens in Haller's layer are genuine anatomical voids; filling them distorts the outer boundary contour. Our policy: retain only Largest Connected Component (LCC) and small horizontal gap bridging (&le; 15 px).
+                  Applying standard morphological hole-filling and smoothing drastically worsened thickness MAE from <strong>2.095 px to 11.223 px (p &lt; 0.001)</strong>! Large blood vessel lumens in Haller's layer are genuine anatomical voids; filling them distorts the outer boundary contour. Our policy: retain only Largest Connected Component (LCC) and small horizontal gap bridging (&le; 15 px).
                 </p>
               </div>
             </div>
@@ -900,7 +906,7 @@ HTML_CONTENT = """<!DOCTYPE html>
               <div class="card-title" style="color: var(--accent-cyan); margin-top: 14px; font-size: 0.92rem;">Structural Limitations of Project A</div>
               <ul class="bullet-list" style="margin-top: 6px; font-size: 0.82rem;">
                 <li><strong>Cohort Size:</strong> 697 test scans originate from 19 eyes (18 patients), introducing intra-eye scan correlation (pseudoreplication).</li>
-                <li><strong>Uncalibrated Axial Scale:</strong> 3.75 &mu;m/pixel assumed from manufacturer specs; individual refractive errors affect true scale.</li>
+                <li><strong>Uncalibrated Axial Scale:</strong> 3.75 µm/pixel assumed from manufacturer specs; individual refractive errors affect true scale.</li>
                 <li><strong>Manual Fovea Landmarking:</strong> Subfoveal location relied on volume index metadata rather than automated foveal pit detection.</li>
                 <li><strong>Training Epochs:</strong> 4 epochs trained due to institutional resource limits.</li>
               </ul>
@@ -960,31 +966,31 @@ HTML_CONTENT = """<!DOCTYPE html>
           <p class="slide-subtitle">Classical CNN feature compression, angle embedding, and ring-entangled VQC</p>
         </div>
         <div class="slide-body">
-          <div class="col-left col-60">
+          <div class="col-left col-55">
             <div class="figure-container">
-              <img src="assets/quantum_circuit_diagram.png" alt="Quantum Circuit Diagram" style="max-height: 150px;">
+              <img src="assets/quantum_circuit_diagram.png" alt="Quantum Circuit Diagram" style="max-height: 140px; width: 100%; object-fit: contain;">
               <div class="figure-caption">
-                Figure 10.1: 4-qubit PennyLane VQC. State preparation via $R_y(\theta_i)$, 2 variational layers ($R_x, R_y, R_z$), Ring CNOT entanglers, and Pauli-$Z$ measurement.
+                Figure 10.1: 4-Qubit PennyLane VQC Schematic. State preparation via Ry(θᵢ) angle rotation, 2 variational layers of (Rx, Ry, Rz) single-qubit gates, Ring CNOT entangling ladder, and Pauli-Z expectation value readout.
               </div>
             </div>
             <div class="figure-container" style="margin-top: 10px;">
-              <img src="assets/hybrid_qnn_pipeline_diagram.png" alt="Hybrid Pipeline Diagram" style="max-height: 130px;">
+              <img src="assets/hybrid_qnn_pipeline_diagram.png" alt="Hybrid Pipeline Diagram" style="max-height: 175px; width: 100%; object-fit: contain;">
               <div class="figure-caption">
-                Figure 10.2: End-to-end dataflow from 28&times;28 image to logit prediction.
+                Figure 10.2: End-to-end dataflow pipeline from 28×28 chest X-ray to final pneumonia prediction logit.
               </div>
             </div>
           </div>
-          <div class="col-right col-40">
+          <div class="col-right col-45">
             <div class="card" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-purple);">Four-Stage Hybrid Flow</div>
               <ul class="bullet-list quantum" style="margin-top: 6px; font-size: 0.83rem;">
-                <li><strong>1. Classical Feature Extractor:</strong> 3 Conv blocks ($1 \to 16 \to 32 \to 64$) + AdaptiveAvgPool &rarr; Linear(64, 4) compresses image into vector $\mathbf{x} \in \mathbb{R}^4$ (11,076 parameters).</li>
-                <li><strong>2. Angle Embedding:</strong> Maps $\mathbf{x}$ to qubit angles via $\theta_i = \pi \tanh(x_i) \in [-\pi, \pi]$. Applies $R_y(\theta_i)$ to state $|0000\rangle$.</li>
-                <li><strong>3. Variational Layers (2 Layers):</strong> 3 rotations ($R_x, R_y, R_z$) per qubit ($3 \times 4 = 12$ wts/layer $\times 2 = 24$ quantum weights) + Ring CNOT entanglement ($0 \to 1 \to 2 \to 3 \to 0$).</li>
-                <li><strong>4. Measurement & Readout:</strong> Measures Pauli expectation values $\langle Z_i \rangle \in [-1, 1]$ into Linear(4 &rarr; 1) [5 weights].</li>
+                <li><strong>1. Classical Feature Extractor:</strong> 3 Conv blocks (1 &rarr; 16 &rarr; 32 &rarr; 64) + AdaptiveAvgPool &rarr; Linear(64, 4) compresses image into 4-dimensional vector x = [x₀, x₁, x₂, x₃] &isin; &reals;⁴ (11,076 parameters).</li>
+                <li><strong>2. Angle Embedding:</strong> Maps x to qubit angles via &theta;&#7522; = &pi; &bull; tanh(x&#7522;) within [-&pi;, +&pi;]. Applies Ry(&theta;&#7522;) to ground state |0000&rang;.</li>
+                <li><strong>3. Variational Layers (2 Layers):</strong> 3 rotations (Rx, Ry, Rz) per qubit (3 &times; 4 = 12 wts/layer &times; 2 = 24 quantum weights) + Ring CNOT ladder (0 &rarr; 1 &rarr; 2 &rarr; 3 &rarr; 0) generating 4-qubit entanglement.</li>
+                <li><strong>4. Measurement & Readout:</strong> Measures Pauli expectation values &lang;Z&#7522;&rang; &isin; [-1, +1] on all 4 qubits. Feedforward Linear(4 &rarr; 1) yields logit (5 weights).</li>
               </ul>
-              <div class="math-block" style="margin-top: 8px; font-size: 0.8rem;">
-                Total Head Params: 24 (Quantum) + 5 (Linear) = 29
+              <div class="math-block" style="margin-top: 8px; font-size: 0.82rem;">
+                Total Head Params: 24 (Quantum VQC) + 5 (Linear Readout) = 29
               </div>
             </div>
           </div>
@@ -1014,17 +1020,17 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-cyan);">The Critical Confounder in Quantum ML</div>
               <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.4;">
-                A standard CNN has $>105,000$ parameters (1,025 in head). Comparing a 29-parameter quantum head against a 105k-parameter network is confounded by parameter capacity and capacity-induced overfitting.
+                A standard CNN has &gt;105,000 parameters (1,025 in head). Comparing a 29-parameter quantum head against a 105k-parameter network is fundamentally confounded by parameter capacity and capacity-induced overfitting.
               </p>
               <div class="card highlight" style="margin-top: 10px; border-color: var(--accent-purple);">
                 <div class="card-title" style="color: var(--accent-purple); font-size: 0.88rem;">Our Solution: Capacity-Matched Control (CNN + MLP)</div>
                 <p style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.4;">
-                  We built a parameter-matched classical control using the identical 4-dim CNN backbone feeding a 2-layer MLP head: Linear(4, 8) + ReLU + Linear(8, 1) = <strong>49 head parameters</strong> (11,125 total vs QNN's 11,105, $\Delta < 0.2\%$).
+                  We built a parameter-matched classical control using the identical 4-dim CNN backbone feeding a 2-layer MLP head: Linear(4, 8) + ReLU + Linear(8, 1) = <strong>49 head parameters</strong> (11,125 total vs QNN's 11,105, matched to within &Delta; &lt; 0.2% capacity).
                 </p>
               </div>
               <div class="card-title" style="color: var(--accent-teal); margin-top: 12px; font-size: 0.88rem;">Strict Optimization Parity</div>
               <ul class="bullet-list" style="margin-top: 4px; font-size: 0.8rem;">
-                <li>Adam optimizer (lr = 1e-3, weight_decay = 1e-4), CosineAnnealingLR (T_max = 20).</li>
+                <li>Adam optimizer (learning rate = 10⁻³, weight decay = 10⁻⁴), CosineAnnealingLR (T_max = 20).</li>
                 <li>Identical BCEWithLogitsLoss with pos_weight = 0.3475, batch size 64, seed 42, 20 epochs.</li>
                 <li>Simulation: PennyLane <code>default.qubit</code> state-vector with exact analytic backprop.</li>
               </ul>
@@ -1032,7 +1038,7 @@ HTML_CONTENT = """<!DOCTYPE html>
           </div>
         </div>
         <div class="speaker-text" style="display:none;">
-          "A widespread problem in quantum machine learning literature is comparing a 30-parameter quantum head directly against a 100,000-parameter classical model. If the classical model overfits, authors mistakenly claim quantum advantage. We eliminated this confounder by building a capacity-matched classical control: an identical CNN backbone feeding a 49-parameter classical MLP head. The total parameter counts differ by less than 0.2%, and all models trained under identical learning rates, schedulers, and seeds."
+          "A major flaw in many quantum machine learning papers is comparing a small quantum circuit to an overparameterized classical model. We eliminated this confounder by designing a capacity-matched classical control: a CNN with an identical 4-dimensional bottleneck feeding a 49-parameter MLP head. Both models have approximately 11,100 total parameters and trained under identical optimization schedules."
         </div>
       </div>
 
@@ -1046,7 +1052,7 @@ HTML_CONTENT = """<!DOCTYPE html>
         <div class="slide-body">
           <div class="col-left col-50">
             <div class="card" style="height: 100%;">
-              <div class="card-title" style="color: var(--accent-purple);">Test Performance ($N = 624$)</div>
+              <div class="card-title" style="color: var(--accent-purple);">Test Performance (N = 624)</div>
               <table class="data-table" style="margin-top: 8px;">
                 <thead>
                   <tr>
@@ -1095,9 +1101,9 @@ HTML_CONTENT = """<!DOCTYPE html>
               </table>
               <div class="card highlight" style="margin-top: 12px; border-color: var(--accent-cyan); padding: 10px;">
                 <div class="card-title" style="color: var(--accent-cyan); font-size: 0.86rem;">📊 McNemar's Paired Significance Tests</div>
-                <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">
-                  <p>• <strong>QNN vs Baseline CNN:</strong> $\chi^2 = 9.72, p = 0.0018$ &rarr; <strong>Significant</strong> gain over unconstrained baseline.</p>
-                  <p style="margin-top: 4px;">• <strong>QNN vs Matched MLP Control:</strong> $\chi^2 = 1.93, p = 0.164$ &rarr; <strong>NOT statistically significant</strong> ($\alpha = 0.05$). 95% Wilson CIs overlap ([86.7%, 91.5%] vs [85.1%, 90.2%]).</p>
+                <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.45;">
+                  <p>• <strong>QNN vs Baseline CNN:</strong> &chi;&sup2; = 9.72, p = 0.0018 &rarr; <strong>Significant</strong> gain over unconstrained baseline.</p>
+                  <p style="margin-top: 4px;">• <strong>QNN vs Matched MLP Control:</strong> &chi;&sup2; = 1.93, p = 0.164 &rarr; <strong>NOT statistically significant</strong> (&alpha; = 0.05). 95% Wilson CIs overlap ([86.7%, 91.5%] vs [85.1%, 90.2%]).</p>
                 </div>
               </div>
             </div>
@@ -1106,7 +1112,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="figure-container" style="height: 100%;">
               <img src="assets/roc_curves_combined.png" alt="Combined ROC Curves" style="max-height: 290px;">
               <div class="figure-caption">
-                Figure 12.1: Test ROC curves for all models. Hybrid QNN (2-layer AUC 0.937) exhibits competitive discriminative capacity across operating thresholds.
+                Figure 12.1: Test ROC curves for all models. Hybrid QNN (2-layer AUC = 0.937) exhibits competitive discriminative capacity across operating thresholds.
               </div>
             </div>
           </div>
@@ -1129,14 +1135,14 @@ HTML_CONTENT = """<!DOCTYPE html>
               <div class="card-title" style="color: var(--accent-amber);">Investigation 1: Val-to-Test Accuracy Drop (95.8% &rarr; 89.1%)</div>
               <ul class="bullet-list warning" style="margin-top: 6px; font-size: 0.83rem;">
                 <li><strong>Cause 1 (Prevalence Shift):</strong> Normal cases make up 25.76% of validation, but jump to 37.50% of the test set (+11.74% shift).</li>
-                <li><strong>Cause 2 (Test Specificity Collapse):</strong> While Pneumonia recall remained high ($95.6\% \to 96.9\%$), specificity on Normal cases dropped from <strong>96.3% on validation to 76.1% on test</strong> across ALL models (down to 65.0% in CNN).</li>
+                <li><strong>Cause 2 (Test Specificity Collapse):</strong> While Pneumonia recall remained high (95.6% &rarr; 96.9%), specificity on Normal cases dropped from <strong>96.3% on validation to 76.1% on test</strong> across ALL models (down to 65.0% in CNN).</li>
                 <li><strong>Joint Impact:</strong> The test set contains harder Normal cases; coupled with a higher Normal proportion, false positives heavily drag down overall test accuracy.</li>
               </ul>
               <div class="card highlight" style="margin-top: 10px; border-color: var(--accent-purple); padding: 10px;">
                 <div class="card-title" style="color: var(--accent-purple); font-size: 0.86rem;">Investigation 2: Why Did 1-Layer (90.38%) Beat 2-Layer (89.10%)?</div>
                 <div style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.4;">
-                  <p>• <strong>Only 8 images difference</strong> out of 624 (564 vs 556 correct). McNemar's $p = 0.186$ (NOT significant).</p>
-                  <p style="margin-top: 4px;">• <strong>Selection Integrity:</strong> 2-layer had lower validation loss ($0.0557$ vs $0.0584$). Model was chosen strictly by validation metrics without test-peeking.</p>
+                  <p>• <strong>Only 8 images difference</strong> out of 624 (564 vs 556 correct). McNemar's p = 0.186 (NOT statistically significant).</p>
+                  <p style="margin-top: 4px;">• <strong>Selection Integrity:</strong> 2-layer had lower validation loss (0.0557 vs 0.0584). Model was chosen strictly by validation metrics without test-peeking.</p>
                 </div>
               </div>
             </div>
@@ -1179,17 +1185,17 @@ HTML_CONTENT = """<!DOCTYPE html>
               <div class="card-title" style="color: var(--accent-cyan);">Simulation vs Physical NISQ Reality</div>
               <ul class="bullet-list quantum" style="margin-top: 6px; font-size: 0.83rem;">
                 <li><strong>Current Simulator:</strong> PennyLane <code>default.qubit</code> state-vector simulator using classical floating-point matrix multiplication and reverse-mode autodiff (<code>diff_method="backprop"</code>).</li>
-                <li><strong>Physical NISQ Execution:</strong> Real quantum processors cannot backpropagate through state amplitudes. Gradients require the <strong>Parameter-Shift Rule</strong>:
-                  <div class="math-block" style="margin: 4px 0; font-size: 0.76rem;">
-                    &part;&lang;Z&rang;/&part;&theta; = 0.5 &bull; [&lang;Z&rang;(&theta; + &pi;/2) - &lang;Z&rang;(&theta; - &pi;/2)]
+                <li><strong>Physical NISQ Execution:</strong> Real quantum processors cannot access full wavefunctions. Gradients require the <strong>Parameter-Shift Rule</strong>:
+                  <div class="math-block" style="margin: 4px 0; font-size: 0.78rem;">
+                    &part;&lang;Z&rang; / &part;&theta; = 0.5 &bull; [ &lang;Z&rang;(&theta; + &pi;/2) &minus; &lang;Z&rang;(&theta; &minus; &pi;/2) ]
                   </div>
-                  Requires $2 \times 24 = 48$ physical circuit runs per sample ($>4.5 \times 10^6$ runs over 20 epochs), plus decoherence and shot noise.
+                  Requires 2 &times; 24 = 48 physical circuit runs per sample (&gt; 4.5 &times; 10⁶ runs over 20 epochs), plus decoherence and shot noise.
                 </li>
               </ul>
               <div class="card-title" style="color: var(--accent-rose); margin-top: 10px; font-size: 0.88rem;">Structural Limitations of Project B</div>
               <ul class="bullet-list warning" style="margin-top: 4px; font-size: 0.8rem;">
                 <li>Evaluated under single random seed (42); multi-seed variance unmeasured.</li>
-                <li>4-qubit scale limits Hilbert space dimensionality to $2^4 = 16$.</li>
+                <li>4-qubit scale limits Hilbert space dimensionality to 2⁴ = 16.</li>
                 <li>Reported inference latency (0.07 ms/img) is batch-amortized on classical CPU.</li>
               </ul>
             </div>
@@ -1208,15 +1214,15 @@ HTML_CONTENT = """<!DOCTYPE html>
           <p class="slide-subtitle">Cross-project conclusions: patient integrity, matched controls, and metric honesty</p>
         </div>
         <div class="slide-body">
-          <div class="col-left col-50">
+          <div class="col-left col-55">
             <div class="figure-container" style="height: 100%;">
-              <img src="assets/synthesis_3pillars.png" alt="Three Pillars Graphic" style="max-height: 290px;">
+              <img src="assets/synthesis_3pillars.png" alt="Three Pillars Graphic" style="max-height: 330px; width: 100%; object-fit: contain;">
               <div class="figure-caption">
-                Figure 15.1: The three foundational principles derived from both medical image analysis projects.
+                Figure 15.1: The three foundational principles derived from both medical image analysis projects. Fully contained text cards.
               </div>
             </div>
           </div>
-          <div class="col-right col-50">
+          <div class="col-right col-45">
             <div class="card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
               <table class="data-table" style="font-size: 0.82rem;">
                 <thead>
@@ -1229,7 +1235,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                 <tbody>
                   <tr>
                     <td><strong>Data Safeguard</strong></td>
-                    <td>Patient split prevents 30 &mu;m slice leakage</td>
+                    <td>Patient-level split prevents 30 µm slice leakage</td>
                     <td>Benchmark partitions avoid holdout contamination</td>
                   </tr>
                   <tr>
@@ -1240,7 +1246,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                   <tr>
                     <td><strong>Metric Honesty</strong></td>
                     <td>Bland-Altman LoA; no hole-filling artifact</td>
-                    <td>McNemar's test ($p=0.164$); specificity drop audit</td>
+                    <td>McNemar's test (p = 0.164); specificity drop audit</td>
                   </tr>
                 </tbody>
               </table>
@@ -1269,9 +1275,9 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-green);">OIMHS Dataset Color Channel Deconstruction</div>
               <ul class="bullet-list oct" style="margin-top: 8px; font-size: 0.85rem;">
-                <li><strong>Green Channel ($G > 128, R < 128$):</strong> Represents neurosensory retina. Average vertical position sits ~37 &mu;m above Bruch's membrane.</li>
-                <li><strong>Yellow Channel ($R > 128, G > 128$):</strong> Represents choroidal vascular bed. Average vertical depth sits ~214 &mu;m below Bruch's membrane.</li>
-                <li><strong>Automated Binarization Rule:</strong> True Choroid is extracted via `(mask[..., 0] > 128) & (mask[..., 1] > 128)`.</li>
+                <li><strong>Green Channel (G &gt; 128, R &lt; 128):</strong> Represents neurosensory retina. Average vertical position sits ~37 µm above Bruch's membrane.</li>
+                <li><strong>Yellow Channel (R &gt; 128, G &gt; 128):</strong> Represents choroidal vascular bed. Average vertical depth sits ~214 µm below Bruch's membrane.</li>
+                <li><strong>Automated Binarization Rule:</strong> True Choroid is extracted via `(mask[..., 0] &gt; 128) & (mask[..., 1] &gt; 128)`.</li>
               </ul>
               <div class="card highlight" style="margin-top: 14px; font-size: 0.82rem;">
                 Verified across all 3,859 masks in raw dataset. Avoided the critical error of training on retinal boundaries.
@@ -1282,13 +1288,13 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card warning" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-amber);">Mathematical Cause of Post-Processing Paradox</div>
               <p style="font-size: 0.84rem; color: #cbd5e1; line-height: 1.4;">
-                Why did morphological closing + Savitzky-Golay filtering inflate thickness MAE from 2.095 px to 11.223 px ($p < 0.001$)?
+                Why did morphological closing + Savitzky-Golay filtering inflate thickness MAE from 2.095 px to 11.223 px (p &lt; 0.001)?
               </p>
               <ul class="bullet-list warning" style="margin-top: 8px; font-size: 0.83rem;">
                 <li>Large choroidal vessels (Haller's layer) appear as hyporeflective lumens (dark circular voids).</li>
-                <li>Morphological closing ($\mathcal{M} \bullet \mathcal{K}$) treats lumens as foreground holes and bridges them with outer tissue.</li>
+                <li>Morphological closing treats lumens as foreground holes and bridges them with outer tissue.</li>
                 <li>This alters the connected component boundary, dragging the detected CSI downward into scleral tissue by 8–15 pixels.</li>
-                <li><strong>Final Protocol:</strong> Largest Connected Component (LCC) + horizontal gap bridging ($\le 15$ px) only. Lumens are preserved as genuine anatomy.</li>
+                <li><strong>Final Protocol:</strong> Largest Connected Component (LCC) + horizontal gap bridging (&le; 15 px) only. Lumens are preserved as genuine anatomy.</li>
               </ul>
             </div>
           </div>
@@ -1342,15 +1348,15 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-purple);">The Parameter-Shift Theorem</div>
               <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.4;">
-                For quantum circuits with generators having eigenvalues $\pm \frac{1}{2}$ (such as Pauli rotations $R_x, R_y, R_z$), the exact gradient of an expectation value is given by:
+                For quantum circuits with generators having eigenvalues &plusmn; 1/2 (such as Pauli rotations Rx, Ry, Rz), the exact gradient of an expectation value is given by:
               </p>
               <div class="math-block" style="font-size: 0.84rem; margin: 10px 0;">
-                &part;&lang;Z&rang; / &part;&theta;_j = 0.5 &bull; [ &lang;Z&rang;(&theta;_j + &pi;/2) - &lang;Z&rang;(&theta;_j - &pi;/2) ]
+                &part;&lang;Z&rang; / &part;&theta;&#7523; = 0.5 &bull; [ &lang;Z&rang;(&theta;&#7523; + &pi;/2) &minus; &lang;Z&rang;(&theta;&#7523; &minus; &pi;/2) ]
               </div>
               <ul class="bullet-list quantum" style="margin-top: 8px; font-size: 0.83rem;">
                 <li>Requires <strong>2 distinct quantum circuit evaluations</strong> per parameter per input sample.</li>
-                <li>For $P = 24$ parameters and batch size $B = 64$: $2 \times 24 \times 64 = 3,072$ circuit runs per batch!</li>
-                <li>Over 74 batches/epoch $\times$ 20 epochs $= 4.54 \times 10^6$ circuit runs.</li>
+                <li>For P = 24 parameters and batch size B = 64: 2 &times; 24 &times; 64 = 3,072 circuit runs per batch!</li>
+                <li>Over 74 batches/epoch &times; 20 epochs = 4.54 &times; 10⁶ circuit runs.</li>
               </ul>
             </div>
           </div>
@@ -1358,7 +1364,7 @@ HTML_CONTENT = """<!DOCTYPE html>
             <div class="card" style="height: 100%;">
               <div class="card-title" style="color: var(--accent-teal);">Why Simulator Backpropagation?</div>
               <ul class="bullet-list" style="margin-top: 8px; font-size: 0.85rem;">
-                <li><strong>State-Vector Simulation:</strong> PennyLane's <code>default.qubit</code> computes exact state amplitudes in $\mathbb{C}^{16}$ via matrix multiplication.</li>
+                <li><strong>State-Vector Simulation:</strong> PennyLane's <code>default.qubit</code> computes exact state amplitudes in 16-dimensional complex space &complexes;¹⁶ via matrix multiplication.</li>
                 <li><strong>Reverse-Mode Autodiff:</strong> Backpropagation through state-vectors computes exact gradients in a single backward pass, reducing 20-epoch training from ~8 hours to <strong>11.2 minutes</strong> on CPU.</li>
                 <li><strong>Scientific Validity:</strong> Simulator backprop gives identical parameter updates to noiseless parameter-shift with infinite shots, providing an ideal upper bound on VQC expressive capacity.</li>
               </ul>
@@ -1380,15 +1386,15 @@ HTML_CONTENT = """<!DOCTYPE html>
         <div class="slide-body">
           <div class="col-left col-50">
             <div class="card" style="height: 100%;">
-              <div class="card-title" style="color: var(--accent-cyan);">Paired McNemar Contingency Matrix ($N=624$)</div>
+              <div class="card-title" style="color: var(--accent-cyan);">Paired McNemar Contingency Matrix (N = 624)</div>
               <table class="data-table" style="margin-top: 8px; font-size: 0.82rem;">
                 <thead>
                   <tr>
                     <th>Model Comparison</th>
-                    <th>$n_{01}$</th>
-                    <th>$n_{10}$</th>
-                    <th>$\chi^2$</th>
-                    <th>$p$-value</th>
+                    <th>n₀₁</th>
+                    <th>n₁₀</th>
+                    <th>&chi;&sup2;</th>
+                    <th>p-value</th>
                     <th>Conclusion</th>
                   </tr>
                 </thead>
@@ -1428,7 +1434,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                 </tbody>
               </table>
               <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 8px;">
-                $n_{01}$: Model A incorrect & Model B correct; $n_{10}$: Model A correct & Model B incorrect.
+                n₀₁: Model A incorrect & Model B correct; n₁₀: Model A correct & Model B incorrect.
               </div>
             </div>
           </div>
@@ -1462,7 +1468,7 @@ HTML_CONTENT = """<!DOCTYPE html>
                 </tbody>
               </table>
               <div class="card highlight" style="margin-top: 12px; font-size: 0.82rem; border-color: var(--accent-amber);">
-                <strong>Definitive Audit Conclusion:</strong> Because the 95% confidence intervals overlap extensively and McNemar's $p = 0.164 > 0.05$, the hybrid QNN is statistically equivalent in performance to a parameter-matched classical neural network.
+                <strong>Definitive Audit Conclusion:</strong> Because the 95% confidence intervals overlap extensively and McNemar's p = 0.164 &gt; 0.05, the hybrid QNN is statistically equivalent in performance to a parameter-matched classical neural network.
               </div>
             </div>
           </div>
@@ -1658,7 +1664,7 @@ def main():
     os.makedirs("presentation", exist_ok=True)
     with open("presentation/index.html", "w", encoding="utf-8") as f:
         f.write(HTML_CONTENT)
-    print("Successfully generated presentation/index.html (19 slides)")
+    print("Successfully generated updated presentation/index.html")
 
 if __name__ == "__main__":
     main()
